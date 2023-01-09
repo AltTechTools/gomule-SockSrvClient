@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"net"
 	"database/sql"
-	libdeflate "github.com/4kills/go-libdeflate/v2"
+	//"errors"
+	//libdeflate "github.com/4kills/go-libdeflate/v2"
 )
 
 func prconefile(filehashbuf []byte, filename string, fsize uint64, filetype string, debug bool, db *sql.DB, uhash []byte){
@@ -198,6 +199,8 @@ func offerfiles(buf []byte, protocol byte, client *SockSrvClient, debug bool, n 
 	//bufcomp := buf[1:n]
 	if protocol == 0xd4 {
 		var blen int = 0
+		var err error
+
  		var decompressed []byte  //maybe move Decompressor creation to the creation of the connection
 		//dc, err := libdeflate.NewDecompressor() //not recomended to create a new instance each, but also not possible to use the same simultaniously
 		//if err != nil {
